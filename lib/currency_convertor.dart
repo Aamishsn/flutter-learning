@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class CurrencyConvertor extends StatelessWidget {
   const CurrencyConvertor({super.key});
-
+  // int result=0;
   @override
   Widget build(BuildContext context) {
+    final TextEditingController textEditingController = TextEditingController();
+
     return MaterialApp(
         home: Scaffold(
             backgroundColor: Colors.blueGrey,
@@ -36,16 +38,17 @@ class CurrencyConvertor extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Padding(
+               Padding(
                   padding:
-                      EdgeInsets.only(top: 0, bottom: 0, left: 10, right: 10),
+                      const EdgeInsets.only(top: 0, bottom: 0, left: 10, right: 10),
                   child: TextField(
-                    style: TextStyle(
+                    controller: textEditingController,
+                    style: const TextStyle(
                         color: Color.fromARGB(255, 0, 0, 0),
                         fontWeight: FontWeight.bold),
-                    keyboardType: TextInputType.numberWithOptions(
+                    keyboardType: const TextInputType.numberWithOptions(
                         signed: true, decimal: true),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       // label: Text('PLease enter your PKR amount"',style: TextStyle(color: Colors.white),),
                       hintText: 'Please enter your amount in PKR',
                       hintStyle:
@@ -54,6 +57,7 @@ class CurrencyConvertor extends StatelessWidget {
                         Icons.monetization_on_outlined,
                         color: Colors.blueGrey,
                       ),
+                      
                       filled: true,
                       fillColor: Colors.white,
                       enabledBorder: OutlineInputBorder(
@@ -71,7 +75,9 @@ class CurrencyConvertor extends StatelessWidget {
                 Container(
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          print(double.parse(textEditingController.text)*272);
+                        },
                         style: const ButtonStyle(
                           fixedSize: WidgetStatePropertyAll(Size(150, 50)),
                           shape: WidgetStatePropertyAll(
